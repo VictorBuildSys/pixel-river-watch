@@ -44,7 +44,7 @@ export default function HydroChart({ variable, unit, readings, cls, stationLabel
         borderColor: palette[i % palette.length],
         backgroundColor: palette[i % palette.length],
         pointBackgroundColor: statuses.map(statusColor),
-        pointBorderColor: list.map((r, j) => (j === lastIdx || r.ts === latestTs ? cssVar("--foreground") : statusColor(statuses[j]))),
+        pointBorderColor: list.map((r, j) => (j === lastIdx || r.ts === latestTs ? cssVar("--foreground") : statusColor(statuses[j] ?? "nodata"))),
         pointBorderWidth: list.map((_, j) => (j === lastIdx ? 2.5 : 1)),
         pointRadius: list.map((_, j) => (j === lastIdx ? 7 : 4)),
         spanGaps: true,
@@ -72,11 +72,11 @@ export default function HydroChart({ variable, unit, readings, cls, stationLabel
         legend: { display: groups.size <= 8, labels: { color: tick, boxWidth: 10, font: { size: 11 } } },
         tooltip: {
           callbacks: {
-            title: (items) => fmtDate(Number(items[0].parsed.x)),
+            title: (items) => fmtDate(Number(items[0]?.parsed.x)),
             label: (item) => {
               const ds = item.dataset as unknown as { _readings: Reading[] };
               const r = ds._readings[item.dataIndex];
-              const c = cls.get(r)?.[variable];
+              const c = r ? cls.get(r)?.[variable] : undefined;
               return `${item.dataset.label}: ${fmtNum(item.parsed.y)} ${unit} · ${c ? STATUS_LABEL[c.status] : ""}`;
             },
           },
