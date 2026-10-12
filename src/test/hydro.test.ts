@@ -24,7 +24,7 @@ describe("parseReadings", () => {
       { dataHora: "2025-01-01T00:00:00", idProjeto: 1, idEstacao: 2, nivel: null },
     ]);
     expect(r).toHaveLength(2);
-    expect(r[0].dataHora).toBe("2025-01-01T00:00:00");
-    expect(r[0].nivel).toBeNull();
+    expect(r[0]?.dataHora).toBe("2025-01-01T00:00:00");
+    expect(r[0]?.nivel).toBeNull();
   });
 });

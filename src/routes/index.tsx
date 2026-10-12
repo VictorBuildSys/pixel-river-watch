@@ -189,7 +189,7 @@ function Dashboard() {
                       const s = rowStatus(r);
                       return (
                         <button key={`${r.idProjeto}-${r.idEstacao}`} onClick={() => setDetail(`${r.idProjeto}-${r.idEstacao}`)}
-                          className={`glass p-4 text-left transition hover:-translate-y-0.5 hover:border-primary/60 ${ATTENTION.includes(s) ? STATUS_CLASS[s].split(" ").find((c) => c.startsWith("border-")) : ""}`}>
+                          className={`glass p-4 text-left transition hover:-translate-y-0.5 hover:border-primary/60 ${ATTENTION.includes(s) ? STATUS_CLASS[s].split(" ").find((c) => c.startsWith("border-")) ?? "" : ""}`}>
                           <div className="mb-3 flex items-start justify-between gap-2">
                             <div>
                               <p className="font-semibold">Estação {r.idEstacao}</p>
@@ -249,7 +249,7 @@ function Dashboard() {
                             {vars.map((v) => {
                               const c = cls.get(r)![v.key];
                               return <td key={v.key} className="px-4 py-2 text-right font-mono" title={`${STATUS_LABEL[c.status]} — ${c.reason}`}>
-                                <span className={`inline-flex items-center gap-1.5 ${ATTENTION.includes(c.status) ? STATUS_CLASS[c.status].split(" ")[1] : ""}`}>
+                                <span className={`inline-flex items-center gap-1.5 ${ATTENTION.includes(c.status) ? (STATUS_CLASS[c.status].split(" ")[1] ?? "") : ""}`}>
                                   <span className={`h-1.5 w-1.5 rounded-full ${DOT[c.status]}`} />{fmtNum(r[v.key])}</span></td>;
                             })}
                             <td className="px-4 py-2"><Badge s={rowStatus(r)} /></td>

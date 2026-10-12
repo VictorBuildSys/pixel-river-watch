@@ -61,19 +61,19 @@ export function parseReadings(raw: unknown): Reading[] {
   for (const r of raw) {
     if (!r || typeof r !== "object") continue;
     const o = r as Record<string, unknown>;
-    const ts = typeof o.dataHora === "string" ? Date.parse(o.dataHora) : NaN;
-    const p = num(o.idProjeto);
-    const e = num(o.idEstacao);
+    const ts = typeof o['dataHora'] === "string" ? Date.parse(o['dataHora']) : NaN;
+    const p = num(o['idProjeto']);
+    const e = num(o['idEstacao']);
     if (!Number.isFinite(ts) || p === null || e === null) continue;
     out.push({
-      dataHora: o.dataHora as string,
+      dataHora: o['dataHora'] as string,
       ts,
       idProjeto: p,
       idEstacao: e,
-      chuva: num(o.chuva),
-      nivel: num(o.nivel),
-      vasao: num(o.vasao),
-      bateria: num(o.bateria),
+      chuva: num(o['chuva']),
+      nivel: num(o['nivel']),
+      vasao: num(o['vasao']),
+      bateria: num(o['bateria']),
     });
   }
   return out.sort((a, b) => b.ts - a.ts);
