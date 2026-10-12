@@ -174,7 +174,7 @@ function Dashboard() {
               <Kpi icon={Radio} label="Estações" value={String(latest.length)} sub={`${new Set(latest.map((r) => r.idProjeto)).size} projetos`} />
               <Kpi icon={Activity} label="Leituras no filtro" value={String(filtered.length)} sub={`de ${all.length} recebidas`} />
               <Kpi icon={AlertTriangle} label="Em atenção" value={String(attentionCount)} sub="estações com anomalia" tone={attentionCount ? "critical" : "normal"} />
-              <Kpi icon={Droplets} label="Última leitura" value={lastTs ? fmtDate(lastTs).split(" ")[0] : "—"} sub={lastTs ? fmtDate(lastTs).split(" ")[1] : "sem dados"} />
+              <Kpi icon={Droplets} label="Última leitura" value={lastTs ? new Date(lastTs).toLocaleDateString("pt-BR") : "—"} sub={lastTs ? new Date(lastTs).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }) : "sem dados"} />
             </section>
 
             <Legend />
