@@ -13,7 +13,4 @@ export default defineConfig({
   resolve: {
     alias: { "@": path.resolve(__dirname, "./src") },
   },
-  build: {
-    outDir: 'dist/client', // Define a pasta de destino para o build
-  },
 });
