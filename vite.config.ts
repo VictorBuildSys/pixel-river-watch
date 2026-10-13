@@ -12,4 +12,7 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Deploy target for external CI (Netlify). Inside a Lovable build the sandbox
+  // pins Cloudflare anyway, so the preview keeps working untouched.
+  nitro: { preset: "netlify" },
 });
