@@ -22,3 +22,6 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+server
+https://siivias.runasp.net/v1/DashBoard/ListarHistorico
