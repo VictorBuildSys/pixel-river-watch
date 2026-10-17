@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 
-const API_URL = "https://siivias.runasp.net/v1/DashBoard/ListarHistorico";
+const API_URL = "https://siivias.runasp.net/v1/DashBoard/ListarUltimaLeitura";
 
 // Proxy: the upstream API sends no CORS headers, so the browser cannot call it directly.
 export const fetchHistorico = createServerFn({ method: "GET" }).handler(async () => {
