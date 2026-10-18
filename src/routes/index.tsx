@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { lazy, Suspense, useCallback, useMemo, useState } from "react";
 import { Droplets, RefreshCw, AlertTriangle, Activity, Radio, X, Settings2, Waves, CloudRain, Gauge, BatteryMedium } from "lucide-react";
 import { fetchHistorico } from "@/lib/hydro.functions";
+import { AppNavigation } from "@/components/AppNavigation";
 import {
   classifyAll, DEFAULT_CONFIG, fmtDate, fmtNum, parseReadings, STATUS_LABEL, VARIABLES, worstStatus,
   type ClassifyConfig, type Reading, type Status, type VariableKey,
@@ -106,7 +107,7 @@ function Dashboard() {
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-30 border-b border-border bg-background/80 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-3">
             <div className="grid h-9 w-9 place-items-center rounded-lg bg-primary/15 text-primary"><Droplets className="h-5 w-5" /></div>
             <div>
@@ -114,6 +115,7 @@ function Dashboard() {
               <p className="text-xs text-muted-foreground">Monitoramento hidrológico</p>
             </div>
           </div>
+          <AppNavigation />
           <div className="flex items-center gap-2">
             <span className="hidden text-xs text-muted-foreground sm:block font-mono">
               {q.dataUpdatedAt ? `Atualizado ${fmtDate(q.dataUpdatedAt)} · auto 60 min` : "Carregando…"}
